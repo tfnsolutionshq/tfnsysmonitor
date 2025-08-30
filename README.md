@@ -46,8 +46,7 @@ sudo systemctl start tfnsysmonitor
 
 ## ⚙️ Configuration
 
-The main config file lives at `/etc/tfnsysmonitor/config.yaml`
-Edit the `config.yaml` file to specify monitoring targets and notification methods.
+The main config file lives in the base folder `./`.  Edit the `config.yaml` file to specify monitoring targets and notification methods.
 
 Example:
 
