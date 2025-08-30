@@ -14,7 +14,7 @@ alerts:
   sms:
     enabled: true
     api_key: "YOUR-TERMII-API-KEY"
-    sender: "TFNSYS"
+    sender: "N-Alert"
     recipients:
       - "+2348012345678"
       - "+2348098765432"
@@ -25,10 +25,10 @@ alerts:
 
 monitors:
   websites:
-    - name: "Afriwok Website"
+    - name: "Afriwok"
       url: "https://afriwok.com"
     - name: "TFN Solutions"
-      url: "https://tfnsolutions.com"
+      url: "https://tfnsolutions.us"
 
   ports:
     - name: "SSH Server"
@@ -39,8 +39,8 @@ monitors:
       port: 8080
 
   ssl:
-    - name: "Afriwok SSL"
-      host: "afriwok.com"
+    - name: "TFN Solutions"
+      host: "tfnsolutions.us"
       port: 443
       days_threshold: 30
 
@@ -67,6 +67,6 @@ monitors:
 
   docker:
     - name: "Laravel App Container"
-      container_name: "afriwok_app"
+      container_name: "tfn_website"
     - name: "Redis Container"
-      container_name: "afriwok_redis"
+      container_name: "tfn_monitor"
