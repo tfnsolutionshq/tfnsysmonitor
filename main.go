@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"time"
 
@@ -11,10 +12,14 @@ import (
 )
 
 func main() {
-	// Load configuration
-	cfg := config.MustLoadConfig("config.yaml")
+	// Command-line flag for config file
+	configPath := flag.String("config", "./config.yaml", "Path to configuration YAML file")
+	flag.Parse()
 
-	// Monitoring loop
+	// Load configuration
+	cfg := config.MustLoadConfig(*configPath)
+
+	// Monitoring loop interval
 	interval := time.Duration(cfg.IntervalSeconds) * time.Second
 	log.Printf("Starting monitoring loop (interval: %v)...", interval)
 
@@ -62,7 +67,7 @@ func main() {
 			go monitor.CheckDocker(cfg, d)
 		}
 
-		// Notify systemd that we are still alive (watchdog support)
+		// Notify systemd watchdog
 		_, _ = daemon.SdNotify(false, daemon.SdNotifyWatchdog)
 
 		time.Sleep(interval)
