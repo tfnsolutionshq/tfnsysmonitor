@@ -1,0 +1,72 @@
+
+---
+
+## 📑 MAN PAGE (`tfnsysmonitor.1`)
+
+```man
+.TH TFNSYSMONITOR 1 "August 2025" "Version 1.0" "System Monitoring Daemon"
+
+.SH NAME
+tfnsysmonitor \- lightweight system monitoring daemon with notifications
+
+.SH SYNOPSIS
+.B tfnsysmonitor
+[\-config FILE]
+
+.SH DESCRIPTION
+.B tfnsysmonitor
+is a daemon that monitors system services such as websites, databases,
+Redis, RabbitMQ, SSL certificates, Docker containers, and TCP ports.
+It reports failures via configured notification channels (email, SMS, chat).
+
+It is designed to run continuously under
+.BR systemd (1),
+with support for
+.B sd_notify
+to allow automatic restarts.
+
+.SH OPTIONS
+.TP
+.BR \-config " FILE"
+Specify the configuration file (YAML format).  
+Default: ./config.yaml
+
+.SH USAGE
+Run manually:
+.IP
+.nf
+$ tfnsysmonitor -config config.yaml
+.fi
+
+Run as a systemd service:
+.IP
+.nf
+$ sudo systemctl enable tfnsysmonitor
+$ sudo systemctl start tfnsysmonitor
+.fi
+
+.SH LOGGING
+When run under systemd, logs can be viewed using:
+.IP
+.nf
+$ journalctl -u tfnsysmonitor -f
+.fi
+
+.SH FILES
+.TP
+.I /etc/tfnsysmonitor/config.yaml
+Default system-wide configuration file.
+
+.TP
+.I /usr/local/bin/tfnsysmonitor
+Binary executable.
+
+.TP
+.I /etc/systemd/system/tfnsysmonitor.service
+Systemd unit file.
+
+.SH AUTHOR
+Written by TurboFlux Network Solutions Ltd (2025).
+
+.SH LICENSE
+MIT License

@@ -1,0 +1,72 @@
+interval_seconds: 60
+
+alerts:
+  emails:
+    enabled: true
+    smtp_host: "smtp.gmail.com"
+    smtp_port: 587
+    smtp_user: "your-gmail@gmail.com"
+    smtp_pass: "your-app-password"   # App password, not Gmail login
+    recipients:
+      - "admin1@example.com"
+      - "admin2@example.com"
+
+  sms:
+    enabled: true
+    api_key: "YOUR-TERMII-API-KEY"
+    sender: "TFNSYS"
+    recipients:
+      - "+2348012345678"
+      - "+2348098765432"
+
+  google_chat:
+    enabled: true
+    webhook_url: "https://chat.googleapis.com/v1/spaces/AAA.../messages?key=XXX&token=YYY"
+
+monitors:
+  websites:
+    - name: "Afriwok Website"
+      url: "https://afriwok.com"
+    - name: "TFN Solutions"
+      url: "https://tfnsolutions.com"
+
+  ports:
+    - name: "SSH Server"
+      host: "192.168.1.10"
+      port: 22
+    - name: "Custom API"
+      host: "192.168.1.20"
+      port: 8080
+
+  ssl:
+    - name: "Afriwok SSL"
+      host: "afriwok.com"
+      port: 443
+      days_threshold: 30
+
+  databases:
+    - name: "Postgres DB"
+      driver: "posgres"
+      dsn: "postgres://user:pass@localhost:5432/mydb?sslmode=disable"
+
+    - name: "MySQL DB"
+      driver: "mysql"
+      dsn: "user:pass@tcp(localhost:3306)/mydb?charset=utf8mb4&parseTime=True&loc=Local"
+
+  redis:
+    - name: "Redis Cache"
+      host: "localhost"
+      port: 6379
+      password: "password"
+      db: 0
+      # db: "db"
+
+  rabbitmq:
+    - name: "RabbitMQ Broker"
+      url: "amqp://guest:guest@localhost:5672/"
+
+  docker:
+    - name: "Laravel App Container"
+      container_name: "afriwok_app"
+    - name: "Redis Container"
+      container_name: "afriwok_redis"

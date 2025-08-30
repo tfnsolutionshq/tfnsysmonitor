@@ -1,0 +1,16 @@
+[Unit]
+Description=TFN System Monitor
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/tfnsysmonitor
+Restart=always
+RestartSec=5
+WatchdogSec=30s
+NotifyAccess=all
+WorkingDirectory=/etc/tfnsysmonitor
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
